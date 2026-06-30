@@ -2709,11 +2709,6 @@ function createDangerButton(label, icon, onClick) {
 
 'use strict';
 
-import { 
-  generateId, getToday, formatDate, createRipple, 
-  showToast, triggerConfetti, debounce 
-} from './utils/helpers.js';
-
 // App State
 let state = {
   currentPage: 'home',
@@ -2748,7 +2743,7 @@ function init() {
   setupPWAInstall();
 
   // Schedule reminders
-  scheduleAllReminders();
+  scheduleAllReminders(state.tasks);
 
   // Initialize icons
   if (window.lucide) {
@@ -3170,12 +3165,6 @@ function setupPWAInstall() {
     deferredPrompt = null;
     showToast('تم تثبيت التطبيق بنجاح!', 'success');
   });
-}
-
-// Schedule all reminders
-function scheduleAllReminders() {
-  const pendingTasks = state.tasks.filter(t => !t.completed && t.time);
-  pendingTasks.forEach(scheduleTaskReminder);
 }
 
 // Expose app methods globally for components
