@@ -4,165 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#0F1117">
-  <meta name="background-color" content="#0F1117">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="ToDo 0x58">
   <meta name="description" content="تطبيق مهام بسيط وسريع وأنيق">
   <meta name="mobile-web-app-capable" content="yes">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
   <title>ToDo 0x58</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-  <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
-
-  <!-- Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="src/assets/icons/icon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="src/assets/icons/icon-72x72.png">
   <link rel="apple-touch-icon" sizes="180x180" href="src/assets/icons/icon-192x192.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="src/assets/icons/icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="src/assets/icons/icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="src/assets/icons/icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="src/assets/icons/icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="src/assets/icons/icon-96x96.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="src/assets/icons/icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="src/assets/icons/icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="57x57" href="src/assets/icons/icon-72x72.png">
-
-  <!-- Splash Screens -->
-  <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px)" href="src/assets/icons/splash-640x1136.png">
-  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="src/assets/icons/splash-750x1334.png">
-  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px)" href="src/assets/icons/splash-828x1792.png">
-  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px)" href="src/assets/icons/splash-1125x2436.png">
-  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="src/assets/icons/splash-1242x2688.png">
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
-
-    :root {
-      --bg-primary: #0F1117;
-      --bg-card: #1A1D24;
-      --primary: #00E676;
-      --danger: #FF3D71;
-      --warning: #FF9800;
-      --success: #4CAF50;
-      --text-primary: #FFFFFF;
-      --text-secondary: rgba(255,255,255,0.6);
-      --border: rgba(255,255,255,0.08);
-      --radius: 16px;
-    }
-
+    :root { --bg-primary: #0F1117; --bg-card: #1A1D24; --primary: #00E676; --danger: #FF3D71; --warning: #FF9800; --success: #4CAF50; --text-primary: #FFFFFF; --text-secondary: rgba(255,255,255,0.6); --border: rgba(255,255,255,0.08); --radius: 16px; }
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body { font-family: 'Tajawal', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; min-height: 100dvh; overflow-x: hidden; direction: rtl; -webkit-overflow-scrolling: touch; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-
     .ripple-container { position: relative; overflow: hidden; }
     .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.15); transform: scale(0); animation: ripple-animation 0.6s ease-out; pointer-events: none; }
     @keyframes ripple-animation { to { transform: scale(4); opacity: 0; } }
-
     @keyframes skeleton-shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
     .skeleton { background: linear-gradient(90deg, #1A1D24 25%, #252830 50%, #1A1D24 75%); background-size: 200% 100%; animation: skeleton-shimmer 1.5s infinite; border-radius: 8px; }
-
     .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-card); color: var(--text-primary); padding: 12px 24px; border-radius: 12px; font-size: 14px; z-index: 9999; opacity: 0; transition: all 0.3s ease; border: 1px solid var(--border); white-space: nowrap; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-
     .page { display: none; animation: fadeIn 0.3s ease; }
     .page.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
     .task-checkbox { appearance: none; width: 24px; height: 24px; border: 2px solid var(--border); border-radius: 6px; cursor: pointer; position: relative; transition: all 0.2s ease; flex-shrink: 0; }
     .task-checkbox:checked { background: var(--primary); border-color: var(--primary); }
     .task-checkbox:checked::after { content: ''; position: absolute; left: 6px; top: 2px; width: 6px; height: 12px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-
     .progress-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
     .progress-fill { height: 100%; background: linear-gradient(90deg, #00E676, #00C853); border-radius: 3px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-
     .fab { position: fixed; bottom: 90px; left: 24px; width: 60px; height: 60px; background: linear-gradient(135deg, #00E676, #00C853); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0, 230, 118, 0.3); cursor: pointer; z-index: 100; transition: transform 0.2s ease, box-shadow 0.2s ease; border: none; }
     .fab:active { transform: scale(0.95); }
-
     .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .card:active { transform: scale(0.98); }
-
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: flex-end; justify-content: center; animation: fadeIn 0.2s ease; }
     .modal-overlay.active { display: flex; }
     .modal-content { background: var(--bg-card); width: 100%; max-width: 600px; border-radius: 24px 24px 0 0; padding: 24px; max-height: 90vh; overflow-y: auto; animation: slideUp 0.3s ease; }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
     .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 17, 23, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 8px 16px calc(8px + env(safe-area-inset-bottom)); z-index: 50; display: flex; justify-content: space-around; align-items: center; }
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 16px; color: var(--text-secondary); cursor: pointer; transition: color 0.2s ease; border: none; background: none; font-family: inherit; }
     .nav-item.active { color: var(--primary); }
     .nav-item span { font-size: 11px; }
-
     .calendar-day { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; font-size: 14px; position: relative; }
     .calendar-day:hover { background: rgba(255,255,255,0.05); }
     .calendar-day.active { background: var(--primary); color: #000; font-weight: 700; }
     .calendar-day.has-tasks::after { content: ''; position: absolute; bottom: 4px; width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
     .calendar-day.today { border: 2px solid var(--primary); }
-
     .tag { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s ease; }
     .tag:hover { background: rgba(255,255,255,0.1); }
     .tag.active { background: rgba(0, 230, 118, 0.15); border-color: var(--primary); color: var(--primary); }
-
     .input-field { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-family: inherit; font-size: 15px; outline: none; transition: all 0.2s ease; }
     .input-field:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
     .input-field::placeholder { color: var(--text-secondary); }
-
     .select-field { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-family: inherit; font-size: 15px; outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; background-size: 20px; }
     .select-field:focus { border-color: var(--primary); }
-
     .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; text-align: center; }
     .empty-state-icon { width: 80px; height: 80px; background: rgba(255,255,255,0.03); border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 2px dashed var(--border); }
-
     .install-banner { position: fixed; top: 0; left: 0; right: 0; background: var(--bg-card); padding: 16px; z-index: 300; display: none; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--border); animation: slideDown 0.3s ease; }
     .install-banner.active { display: flex; }
     @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-
     @keyframes confetti-fall { 0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
     .confetti { position: fixed; width: 10px; height: 10px; z-index: 500; pointer-events: none; }
-
     .safe-top { padding-top: env(safe-area-inset-top); }
     .safe-bottom { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
-
     .stats-ring { width: 120px; height: 120px; position: relative; }
     .stats-ring svg { transform: rotate(-90deg); }
     .stats-ring-bg { fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 8; }
     .stats-ring-fill { fill: none; stroke: var(--primary); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
     .stats-ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; font-weight: 700; }
-
     .kbd { display: inline-flex; align-items: center; justify-content: center; padding: 2px 8px; background: rgba(255,255,255,0.08); border-radius: 6px; font-size: 12px; font-family: monospace; border: 1px solid var(--border); }
   </style>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'bg-primary': '#0F1117',
-            'bg-card': '#1A1D24',
-            'primary': '#00E676',
-            'danger': '#FF3D71',
-            'warning': '#FF9800',
-            'success': '#4CAF50',
-          },
-          fontFamily: {
-            'tajawal': ['Tajawal', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
 </head>
 <body>
-  <!-- Install Banner -->
   <div id="installBanner" class="install-banner">
     <div style="display:flex;align-items:center;gap:12px;flex:1">
       <img src="src/assets/icons/icon-72x72.png" width="40" height="40" style="border-radius:10px">
@@ -171,77 +94,46 @@
         <div style="font-size:12px;color:var(--text-secondary)">ثبّت التطبيق للوصول السريع</div>
       </div>
     </div>
-    <button id="installBtn" class="ripple-container" style="padding:8px 20px;background:var(--primary);color:#000;border:none;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer;font-size:14px">تثبيت</button>
-    <button id="closeInstallBanner" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px">
-      <i data-lucide="x" style="width:20px;height:20px"></i>
-    </button>
+    <button id="installBtn" style="padding:8px 20px;background:var(--primary);color:#000;border:none;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer;font-size:14px">تثبيت</button>
+    <button id="closeInstallBanner" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px"><span style="font-size:20px">✕</span></button>
   </div>
 
-  <!-- Toast -->
   <div id="toast" class="toast"></div>
 
-  <!-- Main Content -->
   <div id="app" class="safe-bottom">
     <div id="loading" style="padding:60px 20px;text-align:center">
       <div style="width:48px;height:48px;border:3px solid rgba(0,230,118,0.2);border-top-color:#00E676;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px"></div>
       <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
       <p style="color:var(--text-secondary);font-size:14px">جاري التحميل...</p>
-      <p style="color:var(--text-secondary);font-size:12px;margin-top:8px;opacity:0.6">ToDo 0x58</p>
     </div>
   </div>
 
-  <!-- Floating Action Button -->
-  <button class="fab ripple-container" id="fabBtn" aria-label="إضافة مهمة جديدة">
-    <i data-lucide="plus" style="width:28px;height:28px;color:#000"></i>
-  </button>
+  <button class="fab" id="fabBtn" style="position:fixed;bottom:90px;left:24px;width:60px;height:60px;background:linear-gradient(135deg,#00E676,#00C853);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,230,118,0.3);cursor:pointer;z-index:100;border:none;"><span style="font-size:32px;color:#000;font-weight:700">+</span></button>
 
-  <!-- Bottom Navigation -->
   <nav class="bottom-nav">
-    <button class="nav-item active" data-page="home">
-      <i data-lucide="layout-grid" style="width:22px;height:22px"></i>
-      <span>الرئيسية</span>
-    </button>
-    <button class="nav-item" data-page="tasks">
-      <i data-lucide="list-checks" style="width:22px;height:22px"></i>
-      <span>المهام</span>
-    </button>
-    <button class="nav-item" data-page="calendar">
-      <i data-lucide="calendar-days" style="width:22px;height:22px"></i>
-      <span>التقويم</span>
-    </button>
-    <button class="nav-item" data-page="stats">
-      <i data-lucide="bar-chart-3" style="width:22px;height:22px"></i>
-      <span>الإحصائيات</span>
-    </button>
-    <button class="nav-item" data-page="settings">
-      <i data-lucide="settings" style="width:22px;height:22px"></i>
-      <span>الإعدادات</span>
-    </button>
+    <button class="nav-item active" data-page="home"><span style="font-size:22px">⊞</span><span>الرئيسية</span></button>
+    <button class="nav-item" data-page="tasks"><span style="font-size:22px">☰</span><span>المهام</span></button>
+    <button class="nav-item" data-page="calendar"><span style="font-size:22px">📅</span><span>التقويم</span></button>
+    <button class="nav-item" data-page="stats"><span style="font-size:22px">📊</span><span>الإحصائيات</span></button>
+    <button class="nav-item" data-page="settings"><span style="font-size:22px">⚙</span><span>الإعدادات</span></button>
   </nav>
 
-  <!-- Add Task Modal -->
   <div id="taskModal" class="modal-overlay">
     <div class="modal-content">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
         <h2 id="modalTitle" style="font-size:20px;font-weight:700">مهمة جديدة</h2>
-        <button id="closeModal" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px">
-          <i data-lucide="x" style="width:24px;height:24px"></i>
-        </button>
+        <button id="closeModal" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px;font-size:20px">✕</button>
       </div>
-
       <form id="taskForm" style="display:flex;flex-direction:column;gap:16px">
         <input type="hidden" id="taskId">
-
         <div>
           <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px">اسم المهمة *</label>
           <input type="text" id="taskTitle" class="input-field" placeholder="مثال: مراجعة كاميرات المراقبة" required>
         </div>
-
         <div>
           <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px">الوصف</label>
           <textarea id="taskDesc" class="input-field" rows="3" placeholder="تفاصيل إضافية عن المهمة..."></textarea>
         </div>
-
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div>
             <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px">التاريخ</label>
@@ -252,7 +144,6 @@
             <input type="time" id="taskTime" class="input-field">
           </div>
         </div>
-
         <div>
           <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px">الأولوية</label>
           <select id="taskPriority" class="select-field">
@@ -262,28 +153,20 @@
             <option value="urgent">🔴 عاجلة</option>
           </select>
         </div>
-
         <div>
           <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px">الوسم</label>
           <div id="tagsContainer" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px"></div>
           <input type="text" id="taskTag" class="input-field" placeholder="أو اكتب وسماً جديداً...">
         </div>
-
-        <button type="submit" class="ripple-container" style="margin-top:8px;padding:16px;background:linear-gradient(135deg,#00E676,#00C853);color:#000;border:none;border-radius:14px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
-          <i data-lucide="check" style="width:20px;height:20px"></i>
-          حفظ المهمة
-        </button>
+        <button type="submit" style="margin-top:8px;padding:16px;background:linear-gradient(135deg,#00E676,#00C853);color:#000;border:none;border-radius:14px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer">حفظ المهمة</button>
       </form>
     </div>
   </div>
 
-  <!-- Delete Confirmation Modal -->
   <div id="deleteModal" class="modal-overlay">
     <div class="modal-content" style="max-width:400px;border-radius:24px">
       <div style="text-align:center;padding:20px 0">
-        <div style="width:64px;height:64px;background:rgba(255,61,113,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-          <i data-lucide="trash-2" style="width:28px;height:28px;color:var(--danger)"></i>
-        </div>
+        <div style="width:64px;height:64px;background:rgba(255,61,113,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px">🗑</div>
         <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">حذف المهمة</h3>
         <p style="color:var(--text-secondary);font-size:14px">هل أنت متأكد من حذف هذه المهمة؟ لا يمكن التراجع عن هذا الإجراء.</p>
       </div>
@@ -294,18 +177,6 @@
     </div>
   </div>
 
-  <!-- Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js')
-          .then(function(reg) { console.log('SW registered'); })
-          .catch(function(err) { console.log('SW registration failed'); });
-      });
-    }
-  </script>
-
-  <!-- Main App Script -->
   <script>
 /**
  * ToDo 0x58 - Bundled Application
@@ -3337,20 +3208,6 @@ window.addEventListener('offline', () => {
 });
 
 
-</script>
-
-  <!-- Fallback for icon initialization -->
-  <script>
-    function initIcons() {
-      if (window.lucide && window.lucide.createIcons) {
-        window.lucide.createIcons();
-      } else {
-        setTimeout(initIcons, 100);
-      }
-    }
-    initIcons();
   </script>
-
-
 </body>
 </html>
