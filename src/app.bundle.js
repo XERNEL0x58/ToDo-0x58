@@ -2614,6 +2614,11 @@ function navigateTo(pageId) {
 
   app.appendChild(page);
 
+  // Ensure the page is visible
+  if (page && page.classList) {
+    page.classList.add('active');
+  }
+
   // Re-initialize icons
   setTimeout(() => {
     if (window.lucide) window.lucide.createIcons();
