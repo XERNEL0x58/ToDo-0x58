@@ -1,20 +1,20 @@
 const CACHE_NAME = 'todo-0x58-v1';
 const STATIC_ASSETS = [
-  '/todo-0x58/',
-  '/todo-0x58/index.html',
-  '/todo-0x58/manifest.json',
-  '/todo-0x58/src/app.js',
-  '/todo-0x58/src/utils/helpers.js',
-  '/todo-0x58/src/services/storage.js',
-  '/todo-0x58/src/services/notifications.js',
-  '/todo-0x58/src/components/TaskCard.js',
-  '/todo-0x58/src/components/Calendar.js',
-  '/todo-0x58/src/components/StatsRing.js',
-  '/todo-0x58/src/pages/HomePage.js',
-  '/todo-0x58/src/pages/TasksPage.js',
-  '/todo-0x58/src/pages/CalendarPage.js',
-  '/todo-0x58/src/pages/StatsPage.js',
-  '/todo-0x58/src/pages/SettingsPage.js',
+  './',
+  './index.html',
+  './manifest.json',
+  './src/app.js',
+  './src/utils/helpers.js',
+  './src/services/storage.js',
+  './src/services/notifications.js',
+  './src/components/TaskCard.js',
+  './src/components/Calendar.js',
+  './src/components/StatsRing.js',
+  './src/pages/HomePage.js',
+  './src/pages/TasksPage.js',
+  './src/pages/CalendarPage.js',
+  './src/pages/StatsPage.js',
+  './src/pages/SettingsPage.js',
   'https://cdn.tailwindcss.com',
   'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js',
   'https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js',
@@ -22,15 +22,15 @@ const STATIC_ASSETS = [
 ];
 
 const ICON_ASSETS = [
-  '/todo-0x58/src/assets/icons/icon-72x72.png',
-  '/todo-0x58/src/assets/icons/icon-96x96.png',
-  '/todo-0x58/src/assets/icons/icon-128x128.png',
-  '/todo-0x58/src/assets/icons/icon-144x144.png',
-  '/todo-0x58/src/assets/icons/icon-152x152.png',
-  '/todo-0x58/src/assets/icons/icon-192x192.png',
-  '/todo-0x58/src/assets/icons/icon-384x384.png',
-  '/todo-0x58/src/assets/icons/icon-512x512.png',
-  '/todo-0x58/src/assets/icons/maskable-icon.png'
+  './src/assets/icons/icon-72x72.png',
+  './src/assets/icons/icon-96x96.png',
+  './src/assets/icons/icon-128x128.png',
+  './src/assets/icons/icon-144x144.png',
+  './src/assets/icons/icon-152x152.png',
+  './src/assets/icons/icon-192x192.png',
+  './src/assets/icons/icon-384x384.png',
+  './src/assets/icons/icon-512x512.png',
+  './src/assets/icons/maskable-icon.png'
 ];
 
 // Install: Cache static assets
@@ -106,7 +106,7 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => {
         // Offline fallback for HTML pages
         if (request.mode === 'navigate') {
-          return caches.match('/todo-0x58/index.html');
+          return caches.match('./index.html');
         }
         return new Response('Offline', { status: 503 });
       });
@@ -140,8 +140,8 @@ self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
   const options = {
     body: data.body || 'لديك مهمة قادمة!',
-    icon: '/todo-0x58/src/assets/icons/icon-192x192.png',
-    badge: '/todo-0x58/src/assets/icons/icon-72x72.png',
+    icon: './src/assets/icons/icon-192x192.png',
+    badge: './src/assets/icons/icon-72x72.png',
     tag: data.tag || 'task-reminder',
     requireInteraction: true,
     actions: [
@@ -164,7 +164,7 @@ self.addEventListener('notificationclick', (event) => {
         if (clientList.length > 0) {
           clientList[0].focus();
         } else {
-          self.clients.openWindow('/todo-0x58/');
+          self.clients.openWindow('./');
         }
       })
     );

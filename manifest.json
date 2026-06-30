@@ -2,12 +2,12 @@
   "name": "ToDo 0x58",
   "short_name": "ToDo 0x58",
   "description": "تطبيق مهام بسيط وسريع وأنيق",
-  "start_url": "/todo-0x58/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0F1117",
   "theme_color": "#0F1117",
   "orientation": "portrait",
-  "scope": "/todo-0x58/",
+  "scope": "./",
   "lang": "ar",
   "dir": "rtl",
   "categories": ["productivity", "utilities"],
@@ -86,14 +86,14 @@
       "name": "مهمة جديدة",
       "short_name": "جديد",
       "description": "إضافة مهمة جديدة",
-      "url": "/todo-0x58/?action=new-task",
+      "url": "./?action=new-task",
       "icons": [{ "src": "src/assets/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "مهام اليوم",
       "short_name": "اليوم",
       "description": "عرض مهام اليوم",
-      "url": "/todo-0x58/?filter=today",
+      "url": "./?filter=today",
       "icons": [{ "src": "src/assets/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ]
